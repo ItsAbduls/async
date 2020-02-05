@@ -1,19 +1,22 @@
 console.log('before..');
- getUser(12, (user)=>{
-    console.log('user ..'+user);
-    getRepositories(user.gitHubUsername,(repos)=>{
-        console.log('reposes...',repos);
-        // call to commit
-        getCommits(repos,displayCommits) // here we replace call
-    })
-});
+ getUser(12, displayUser);
 console.log('after....');
 
-// name function ....
+// name function ....&&&&&&&&&
 function displayCommits(commits) {
     console.log(commits);
 }
+// display user repositories
+function displayRepositories(repos){
+    console.log(repos);
+    getCommits(repos,displayCommits) // here we replace anonyms function with name function
+}
 
+function displayUser(user) {
+    console.log(user);
+    getRepositories(user.gitHubUsername,displayRepositories)
+}
+// call backs....&&&&&&&&&
 function getUser(id, callback) {
     setTimeout(() => {
         console.log('getting data from database...');
